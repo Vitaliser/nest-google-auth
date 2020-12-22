@@ -3,6 +3,7 @@
 </p>
 
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
+
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
   <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
@@ -22,9 +23,12 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
+
+<h1 align="center">This is not the default readme</h1>
+
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+<p>Authentication with google OAuth 2.0 using Nest and passport</p>
 
 ## Installation
 
@@ -45,22 +49,22 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
+## How to use
+
+<p>1- Navigate to <a href="http://localhost:3000/auth/google/" target="_blank">http://localhost:3000/auth/google</a> on your browser</p>
+<p>2- Login to your Google Account</p>
+<p>3- If login is success you will be given a token (jwt)</p>
+<p>4- How to use the token with curl</p>
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+#replace <YOUR_JWT_HERE> with your JWT
+$ curl -i http://localhost:3000/auth/protected -H "Authorization: Bearer YOUR_JWT_HERE"
 ```
 
 ## Support
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If
+you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
 ## Stay in touch
 
