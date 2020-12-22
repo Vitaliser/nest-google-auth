@@ -59,6 +59,10 @@ $ npm run start:prod
 ```bash
 #replace <YOUR_JWT_HERE> with your JWT
 $ curl -i http://localhost:3000/auth/protected -H "Authorization: Bearer YOUR_JWT_HERE"
+# get product list from db
+$ curl -X GET http://localhost:3000/user -H "Authorization: Bearer YOUR_JWT_HERE"
+# insert new product into db
+$ curl -X POST http://localhost:3000/user -d '{"name":"tv","price":120}' -H "Authorization: Bearer YOUR_JWT_HERE"
 ```
 
 ## Support
