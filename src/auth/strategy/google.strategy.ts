@@ -7,11 +7,11 @@ import { AuthService, Provider } from '../auth.service';
 export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
     constructor(private readonly authService: AuthService) {
         super({
-            clientID: process.env.clientID,                      // client id from https://console.developers.google.com/
-            clientSecret: process.env.clientSecret,              // client secret from https://console.developers.google.com/
-            callbackURL: process.env.callbackURL,                // our callback
+            clientID: process.env.clientID,                                                                      // client id from https://console.developers.google.com/
+            clientSecret: process.env.clientSecret,                                                              // client secret from https://console.developers.google.com/
+            callbackURL: (process.env.SSL === 'true' ? process.env.callbackURLSSL : process.env.callbackURL),    // our callback
+            scope: ['email', 'profile'],                                                                         // return email and profile info from google OAuth 2.0
             passReqToCallback: true,
-            scope: ['email', 'profile'],                         //return email and profile info from google OAuth 2.0
         });
     }
 

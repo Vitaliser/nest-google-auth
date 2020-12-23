@@ -12,12 +12,28 @@
 
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import * as fs from "fs";
 
-const port = process.env.PORT;
+const port = Number(process.env.PORT) || 3000;
+const hostname = process.env.HOSTNAME || 'localhost';
+const ssl = process.env.SSL === 'true';
+let httpsOptions = null;
 
-async function bootstrap() {
-    const app = await NestFactory.create(AppModule);
-    await app.listen(port);
+if (ssl) {
+    const keyPath = process.env.SSL_KEY_PATH || '';
+    const certPath = process.env.SSL_CERT_PATH || '';
+    httpsOptions = {
+        key: fs.readFileSync(keyPath),
+        cert: fs.readFileSync(certPath),
+    };
 }
 
-bootstrap();
+async function bootstrap() {
+    const app = await NestFactory.create(AppModule, {httpsOptions, logger: true});
+    await app.listen(port, hostname, () => {
+            const address = 'http' + (ssl ? 's' : '') + '://' + hostname + ':' + port + '/';
+        }
+    )
+}
+
+bootstrap().then(r => console.log("done"));
