@@ -15,6 +15,6 @@ export class ProductService {
     }
 
     async createProduct(createProduct: createProductDto): Promise<Product> {
-        return await this.productRepository.create<Product>(createProduct);
+        return this.productRepository.create<Product>(createProduct);
     }
 }

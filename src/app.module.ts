@@ -9,10 +9,10 @@ import { ProductModule } from './product/product.module';
 @Module({
     imports: [
         AuthModule,
+        ProductModule,
         DatabaseModule,
         ConfigModule.forRoot(
-            {isGlobal: true}),
-        ProductModule
+            {isGlobal: true})
     ],
     controllers: [AppController],
     providers: [AppService],
