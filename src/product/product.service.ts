@@ -14,7 +14,7 @@ export class ProductService {
         return this.productRepository.findAll<Product>();
     }
 
-    async createProduct(createProduct: createProductDto): Promise<Product> {
-        return this.productRepository.create<Product>(createProduct);
+    async createProduct(createProductDTo: createProductDto): Promise<Product> {
+        return this.productRepository.create<Product>(createProductDTo);
     }
 }
