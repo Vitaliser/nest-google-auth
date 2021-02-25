@@ -11,8 +11,10 @@
  */
 
 import { NestFactory } from '@nestjs/core';
+import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app.module';
 import * as fs from "fs";
+import { HttpExceptionFilter } from "./filters/exception/httpExceptionHandler";
 
 const port = Number(process.env.PORT) || 3000;
 const hostname = process.env.HOSTNAME || 'localhost';
@@ -29,7 +31,11 @@ if (ssl) {
 }
 
 async function bootstrap() {
-    const app = await NestFactory.create(AppModule, {httpsOptions, logger: true});
+    const app = await NestFactory.create<NestExpressApplication>(AppModule, {httpsOptions, logger: true});
+    app.set("json spaces", 2);
+    app.set("trust proxy", true);
+    app.disable("x-powered-by");
+    app.useGlobalFilters(new HttpExceptionFilter());
     await app.listen(port, hostname, () => {
             const address = 'http' + (ssl ? 's' : '') + '://' + hostname + ':' + port + '/';
         }
